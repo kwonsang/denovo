@@ -12,7 +12,7 @@ denovo.sensi(Data, Gamma.vec, split.ratio = 0.25, total.significance = 0.05,
 
 \item{Gamma.vec}{a vector of sensitivity parameter \eqn{\Gamma}.}
 
-\item{split.ratio}{set a splitting ratio. 0.25 means using 25% of data as a training sample.}
+\item{split.ratio}{set a splitting ratio. 0.25 means using 25\% of data as a training sample.}
 
 \item{total.significance}{a total significance level.}
 
