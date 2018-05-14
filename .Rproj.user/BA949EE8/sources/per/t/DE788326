@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1526074605587.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3566685589",
+    "id" : "DE788326",
+    "lastKnownWriteTime" : 1526250589,
+    "last_content_update" : 1526250589636,
+    "path" : "~/denovo/R/function.R",
+    "project_path" : "R/function.R",
+    "properties" : {
+        "cursorPosition" : "108,15",
+        "scrollLine" : "93",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

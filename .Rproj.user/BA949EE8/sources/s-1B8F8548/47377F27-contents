@@ -1,0 +1,4 @@
+library(denovo)
+
+data("sim_data")
+denovo(Data=matched.data)
