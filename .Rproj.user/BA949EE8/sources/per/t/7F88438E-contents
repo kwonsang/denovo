@@ -6,8 +6,10 @@
 #' \item{training.index}{an index set for indicating a training sample that is randomly chosen.}
 #' \item{test.index}{an index set for indicating a test sample.}
 #' \item{tree}{discovered effect modification tree structure.}
+#' @import rpart
 #' @export
 denovo.training=function(Data, split.ratio=0.25){
+  require(rpart)
 
   n=dim(Data)[1] # number of pairs
   m=dim(Data)[2]
@@ -40,8 +42,10 @@ denovo.training=function(Data, split.ratio=0.25){
 #' @param gamma a significance level that is used for estimating the confidence interval.
 #' @return A result matrix with deviates is reported. The `Max` column represents the maximum value of deviates.
 #' The `kappa` column represents the critical value.
+#' @import mvtnorm
 #' @export
 denovo.test=function(Data, test.index, tree, total.significance=0.05, gamma=0.01){
+  require(mvtnorm)
   test.matched.data=Data[test.index,]
   test.matched.data=as.data.frame(test.matched.data)
 
@@ -128,8 +132,10 @@ denovo.test=function(Data, test.index, tree, total.significance=0.05, gamma=0.01
 #' @param gamma a significance level that is used for estimating the confidence interval.
 #' @return A result matrix with deviates is reported. The `Max` column represents the maximum value of deviates.
 #' The `kappa` column represents the critical value. If `Max` is greater than 'kappa', we reject the null hypothesis.
+#' @import mvtnorm
 #' @export
 denovo.test.sensi=function(Data, test.index, tree, Gamma.vec, total.significance=0.05, gamma=0.0001){
+  require(mvtnorm)
   test.matched.data=Data[test.index,]
   test.matched.data=as.data.frame(test.matched.data)
 
@@ -233,7 +239,7 @@ denovo=function(Data, split.ratio=0.25, total.significance=0.05, gamma=0.01){
 
   # analysis under no unmeasured confounder assumption
   analysis=denovo.test(Data=Data, test.index=learning.from.training$test.index, tree=learning.from.training$tree, total.significance=total.significance, gamma=gamma)
-  return(analysis)
+  return(list(tree=learning.from.training$tree, deviate.mat=analysis))
 }
 
 #' De novo discovery of effect modification with a sensitivity analysis.
@@ -252,6 +258,6 @@ denovo.sensi=function(Data, Gamma.vec, split.ratio=0.25, total.significance=0.05
 
   # Sensitivity analysis
   sensi.analysis=denovo.test.sensi(Data=Data, Gamma.vec=Gamma.vec, test.index=learning.from.training$test.index, tree=learning.from.training$tree, total.significance=total.significance, gamma=gamma)
-  return(sensi.analysis)
+  return(list(tree=learning.from.training$tree, deviate.mat=sensi.analysis))
 }
 

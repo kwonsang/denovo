@@ -239,7 +239,7 @@ denovo=function(Data, split.ratio=0.25, total.significance=0.05, gamma=0.01){
 
   # analysis under no unmeasured confounder assumption
   analysis=denovo.test(Data=Data, test.index=learning.from.training$test.index, tree=learning.from.training$tree, total.significance=total.significance, gamma=gamma)
-  return(analysis)
+  return(list(tree=learning.from.training$tree, deviate.mat=analysis))
 }
 
 #' De novo discovery of effect modification with a sensitivity analysis.
@@ -258,6 +258,6 @@ denovo.sensi=function(Data, Gamma.vec, split.ratio=0.25, total.significance=0.05
 
   # Sensitivity analysis
   sensi.analysis=denovo.test.sensi(Data=Data, Gamma.vec=Gamma.vec, test.index=learning.from.training$test.index, tree=learning.from.training$tree, total.significance=total.significance, gamma=gamma)
-  return(sensi.analysis)
+  return(list(tree=learning.from.training$tree, deviate.mat=sensi.analysis))
 }
 
