@@ -239,14 +239,15 @@ denovo=function(Data, split.ratio=0.25, total.significance=0.05, gamma=0.01){
 
   # analysis under no unmeasured confounder assumption
   analysis=denovo.test(Data=Data, test.index=learning.from.training$test.index, tree=learning.from.training$tree, total.significance=total.significance, gamma=gamma)
-  return(list(tree=learning.from.training$tree, deviate.mat=analysis))
+  minmax.dev.vec=analysis[which.min(analysis$Max),]
+  return(list(tree=learning.from.training$tree, deviate.mat=analysis, Dminmax=minmax.dev.vec))
 }
 
 #' De novo discovery of effect modification with a sensitivity analysis.
 #'
 #' @param Data a total sample of matched pairs.
 #' @param Gamma.vec a vector of sensitivity parameter \eqn{\Gamma}.
-#' @param split.ratio set a splitting ratio. 0.25 means using 25% of data as a training sample.
+#' @param split.ratio set a splitting ratio. 0.25 means using 25\% of data as a training sample.
 #' @param total.significance a total significance level.
 #' @param gamma a significance level that is used for estimating the confidence interval.
 #' @return A result matrix with deviates is reported. The `Max` column represents the maximum value of deviates.
