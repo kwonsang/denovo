@@ -1,6 +1,6 @@
 
 
-This zip file aims to achieve two main goals: (1) application of the denovo method with simulated datasets and (2) replication of simulation/application results.
+These files aim to achieve two main goals: (1) application of the denovo method with simulated datasets and (2) replication of simulation/application results.
 ----------------------------------------------------------------
 Overview 
 
@@ -73,7 +73,9 @@ Computer specification
 	Memory: 64 GB
 ----------------------------------------------------------------
 Computing Information:
-R version 3.6.3 (2020-02-29)Platform: x86_64-apple-darwin15.6.0 (64-bit)Running under: macOS Catalina 10.15.7
+R version 3.6.3 (2020-02-29)
+Platform: x86_64-apple-darwin15.6.0 (64-bit)
+Running under: macOS Catalina 10.15.7
 
 
 To run the R scripts, several packages should be installed in advance. 
