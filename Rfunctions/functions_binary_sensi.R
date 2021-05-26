@@ -314,6 +314,45 @@ CRDbinary = function(index, treatment, outcome, null = 0, DE = "both", alternati
 } 
 
 
+
+ATEtest = function(ATE.est, N.total, b, A, const.dir,PV, Diff, null, alternative, continuous.relax = F)
+{
+  nosymm = length(b)-1
+  N.vars = length(PV)
+  b[nosymm+1] = null
+  
+  model = list()
+  
+  model$A = A  	
+  model$obj = c(PV)
+  model$sense = const.dir
+  model$rhs = b
+  model$vtype = c(rep("I", N.vars))
+  if(continuous.relax == T){model$vtype = c(rep("C", N.vars))}
+  model$modelsense = "max"
+  
+  solm = gurobi(model, params = list(OutputFlag = 0))
+  SE = sqrt(solm$objval)
+  
+  tstat = (N.total*ATE.est - null)/SE
+  
+  if(alternative == "two.sided")
+  {
+    pval = 2*pnorm(-abs(tstat))
+  }
+  if(alternative == "greater")
+  {
+    pval = 1 - pnorm((tstat))
+  }
+  if(alternative == "less")
+  {
+    pval = pnorm((tstat))
+  }
+  return(list(tstat = tstat, SE = SE, pval = pval))
+}
+
+
+
 ########
 #sensCRD
 #########
